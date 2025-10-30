@@ -2,14 +2,15 @@ package com.pluralsight;
 
 import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Dealership {
-    ArrayList<Vehicle> vroomVroom = new ArrayList<>();
 
-    private final String name = "We Sell Vroom Vroom's";
-    private final String address = "99-58 PPAP street, NY 18920";
-    private final String phoneNum = "999-555-1222";
+    private  String name;
+    private  String address;
+    private  String phoneNum;
+    private ArrayList<Vehicle> inventory;
 
     public String getName() {
         return name;
@@ -27,42 +28,29 @@ public class Dealership {
 
     //constructor
 
-    public Dealership() {
-
-
+    public Dealership(String name, String address, String phoneNum) {
+        this.name = name;
+        this.address = address;
+        this.phoneNum = phoneNum;
+        this.inventory = new ArrayList<Vehicle>();
     }
+
 
     //methods
 
+
+    public List<Vehicle> getVehicleByPrice(double min, double max) {
+        return null;
+    }
     //add and remove vehicle methods go here!!!
-    public void addVehicle(Scanner scanner) {
+
+    public  void addVehicle(Vehicle vehicle) {
         //adding car pseudo
-        System.out.println("Enter vehicle details");
-        System.out.println("Enter VIN number");
-        String vinNum = scanner.nextLine();
-
-        System.out.println("Enter year");
-        int year = scanner.nextInt();
-
-        System.out.println("Enter car model");
-        String model = scanner.nextLine();
-
-        System.out.println("Enter car type");
-        String type = scanner.nextLine();
-
-        System.out.println("Enter car color");
-        String color = scanner.nextLine();
-
-        System.out.println("Enter odometer");
-        int odometer = scanner.nextInt();
-
-        System.out.println("Enter price");
-        double price = scanner.nextDouble();
-
-        Vehicle newVroomVroom = new Vehicle(vinNum, year, model, type, color, odometer, price);
-        vroomVroom.add(newVroomVroom);
+        this.inventory.add(vehicle);
 
     }
+
+
 
     public void removeVehicle(Scanner scanner) {
 
@@ -80,7 +68,7 @@ public class Dealership {
 
         if (confirmRemove.equalsIgnoreCase("Y")) {
             //process returns a boolean which is later used to confirm if the process was succesful
-            boolean removed = vroomVroom.removeIf(v -> v.getVinNum().equalsIgnoreCase(rVinNum));
+            boolean removed = inventory.removeIf(v -> v.getVinNum().equalsIgnoreCase(rVinNum));
 
             if (removed) {
                 System.out.println("Car has successfully been removed. Bye bye vroom vroom ");
@@ -94,6 +82,9 @@ public class Dealership {
 
     }
 
+    public List<Vehicle> getAllVehichles() {
+        return this.inventory;
+    }
 
 }
 
