@@ -42,6 +42,7 @@ public class Dealership {
     public List<Vehicle> getVehicleByPrice(double min, double max) {
         return null;
     }
+
     //add and remove vehicle methods go here!!!
 
     public  void addVehicle(Vehicle vehicle) {
@@ -82,7 +83,7 @@ public class Dealership {
 
     }
 
-    public List<Vehicle> getAllVehichles() {
+    public List<Vehicle> getAllVehicles() {
         return this.inventory;
     }
 
@@ -106,3 +107,4 @@ public String toString() {
 }
 }
 
+    //dealership is a blueprint whos only job is to add and remove inventory and hold vehicles
