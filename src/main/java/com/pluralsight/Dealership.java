@@ -86,5 +86,23 @@ public class Dealership {
         return this.inventory;
     }
 
+
+
+    //pretty formatting
+    @Override
+public String toString() {
+    return String.format(
+        "%n════════════════════════════════════════%n" +
+        "🏢  DEALERSHIP INFORMATION%n" +
+        "────────────────────────────────────────%n" +
+        "Name            : %s%n" +
+        "Address         : %s%n" +
+        "Phone           : %s%n" +
+        "════════════════════════════════════════%n",
+        name,
+        address,
+        phoneNum
+    );
+}
 }
 

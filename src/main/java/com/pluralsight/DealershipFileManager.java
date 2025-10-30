@@ -7,8 +7,12 @@ import java.io.IOException;
 
 public  class DealershipFileManager {
     private String filePath;
+    private Dealership newDealership;
 
-    Dealership vroomVrooms;
+    public DealershipFileManager(String filePath) {
+        this.filePath = filePath;
+       // this.newDealership = newDealership;
+    }
 
     public Dealership getDealership(){
 
@@ -18,7 +22,7 @@ public  class DealershipFileManager {
 
             String[] infoSplitter = dealershipInfo.split("\\|");
 
-            vroomVrooms = new Dealership(infoSplitter[0], infoSplitter[1], infoSplitter[2]);
+            newDealership = new Dealership(infoSplitter[0], infoSplitter[1], infoSplitter[2]);
 
         } catch (FileNotFoundException e) {
             System.out.println("File not found ");
@@ -26,9 +30,11 @@ public  class DealershipFileManager {
         } catch (IOException e) {
             System.out.println("ERROR");
         }
-        return vroomVrooms;
+        return newDealership;
     }
     public void saveDealership(Dealership dealership) {
 
     }
+
+
 }
