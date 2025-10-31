@@ -3,6 +3,7 @@ package com.pluralsight;
 public class Vehicle {
     private String vinNum;
     private int year;
+    private String make;
     private String model;
     private String type;
     private String color;
@@ -18,6 +19,10 @@ public class Vehicle {
 
     public int getYear() {
         return year;
+    }
+
+    public String getMake() {
+        return make;
     }
 
     public String getModel() {
@@ -51,6 +56,10 @@ public class Vehicle {
         this.year = year;
     }
 
+    public void setMake(String make) {
+        this.make = make;
+    }
+
     public void setModel(String model) {
         this.model = model;
     }
@@ -73,9 +82,10 @@ public class Vehicle {
 
     //constructors
 
-    public Vehicle(String vinNum, int year, String model, String type, String color, int odometer, double price) {
+    public Vehicle(String vinNum, int year, String make, String model, String type, String color, int odometer, double price) {
         this.vinNum = vinNum;
         this.year = year;
+        this.make = make;
         this.model = model;
         this.type = type;
         this.color = color;
@@ -83,13 +93,20 @@ public class Vehicle {
         this.price = price;
     }
 
-    //tostring so when display vehicles it no display gibberish
-    @Override
-    public String toString() {
-        //nums adjust output either to the left(-) or right
-        return String.format(
-                "%-10s | %-4d | %-10s | %-10s | %-8s | %8d mi | $%,10.2f",
-        vinNum, year, model, type, color, odometer, price
-        );
-    }
+    //toString so when display vehicles it no display gibberish
+   @Override
+public String toString() {
+    return String.format(
+        "%-6s  %-4d  %-12s  %-12s  %-8s  %-7s  %,8d  $%,8.2f",
+        vinNum,
+        year,
+        make,
+        model,
+        type,
+        color,
+        odometer,
+        price
+    );
+}
+
 }

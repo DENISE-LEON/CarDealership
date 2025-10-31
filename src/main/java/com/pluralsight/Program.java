@@ -15,5 +15,8 @@ public class Program {
         DealershipFileManager kartManager = new DealershipFileManager("src/main/resources/VroomKartInventory.csv");
         System.out.println(kartManager.getDealership());
 
+        //testing if adding vehicle works
+
+
     }
 }

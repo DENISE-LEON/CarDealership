@@ -1,9 +1,6 @@
 package com.pluralsight;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public  class DealershipFileManager {
     private String filePath;
@@ -32,9 +29,26 @@ public  class DealershipFileManager {
         }
         return newDealership;
     }
-    public void saveDealership(Dealership dealership) {
 
+
+    public void vehicleRecorder(Vehicle vehicle) {
+        try(PrintWriter pwriter = new PrintWriter(new BufferedWriter(new FileWriter(filePath, true)))) {
+            pwriter.println(vehicle.getVinNum() + "|" +
+            vehicle.getYear() + "|" +
+            vehicle.getMake() + "|" +
+            vehicle.getModel() + "|" +
+            vehicle.getType() + "|" +
+            vehicle.getColor() + "|" +
+            vehicle.getOdometer() + "|" +
+            vehicle.getPrice());
+        }  catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch (IOException e) {
+            System.out.println("Error");
+        }
     }
+
+
 
 
 }
