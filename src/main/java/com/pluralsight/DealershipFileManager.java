@@ -5,13 +5,16 @@ import java.io.*;
 public  class DealershipFileManager {
     private String filePath;
     private Dealership newDealership;
+    private Vehicle newVehicle;
 
     public DealershipFileManager(String filePath) {
         this.filePath = filePath;
        // this.newDealership = newDealership;
     }
+    //create splitter method
+    //public String[] lineSplitter()
 
-    public Dealership getDealership(){
+    public Dealership getDealershipInfo(){
 
         try(BufferedReader breader = new BufferedReader(new FileReader(filePath))) {
 
@@ -21,6 +24,12 @@ public  class DealershipFileManager {
 
             newDealership = new Dealership(infoSplitter[0], infoSplitter[1], infoSplitter[2]);
 
+
+            String vehicleLine;
+            while( (vehicleLine = breader.readLine()) != null){
+
+            }
+
         } catch (FileNotFoundException e) {
             System.out.println("File not found ");
 
@@ -28,9 +37,13 @@ public  class DealershipFileManager {
             System.out.println("ERROR");
         }
         return newDealership;
+
     }
 
 
+
+
+    //writer: writes the info to the csv
     public void vehicleRecorder(Vehicle vehicle) {
         try(PrintWriter pwriter = new PrintWriter(new BufferedWriter(new FileWriter(filePath, true)))) {
             pwriter.println(vehicle.getVinNum() + "|" +
@@ -48,6 +61,8 @@ public  class DealershipFileManager {
         }
     }
 
+    //method that saves info from csv to arraylist
+    //
 
 
 

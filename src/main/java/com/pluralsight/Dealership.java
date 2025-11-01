@@ -45,28 +45,23 @@ public class Dealership {
 
     //add and remove vehicle methods go here!!!
 
+    public void getAllVehicles(ArrayList<Vehicle> vehicles) {
+
+        //diplay using for loop
+        for(Vehicle currentVehicle: vehicles) {
+            System.out.println(currentVehicle);
+        }
+    }
+
     public  void addVehicle(Vehicle vehicle) {
-        //adding car pseudo
+        //adding car to arraylist
         this.inventory.add(vehicle);
 
     }
 
 
 
-    public void removeVehicle(Scanner scanner) {
-
-        //run bool in case create loop
-        boolean run = true;
-        System.out.println("Enter the VIN number of the car you'd like to remove");
-        String rVinNum = scanner.nextLine();
-        //for fancies
-        System.out.println("Are you sure you want to remove this vehicle?(Y/N)");
-        String confirmRemove = scanner.nextLine();
-
-        //perhaps add loop to using run bool
-        System.out.println("Would you like to remove another vehicle?");
-
-
+    public void removeVehicle(String rVinNum, String confirmRemove) {
         if (confirmRemove.equalsIgnoreCase("Y")) {
             //process returns a boolean which is later used to confirm if the process was succesful
             boolean removed = inventory.removeIf(v -> v.getVinNum().equalsIgnoreCase(rVinNum));
@@ -76,16 +71,12 @@ public class Dealership {
             } else {
                 System.out.printf("Vehicle with %s VIN number not found", rVinNum);
             }
-
         } else {
             System.out.println("Removal cancelled");
         }
 
     }
 
-    public List<Vehicle> getAllVehicles() {
-        return this.inventory;
-    }
 
 
 

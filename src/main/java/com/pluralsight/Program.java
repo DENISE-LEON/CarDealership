@@ -7,15 +7,12 @@ public class Program {
     public static void main(String[] args) {
 
 
-        DealershipFileManager vroomManager = new DealershipFileManager("src/main/resources/VroomInventory.csv");
-        //Dealership vroomDealership = new Dealership("Lots of Vroom Vroom's", "Vroom city", "1-800-Vroom");
-        System.out.println(vroomManager.getDealership());
+//      Dealership vroomDealership = new Dealership("Lots of Vroom Vroom's", "Vroom city", "1-800-Vroom");
+               UserInterface myUserInterface = new UserInterface();
+               myUserInterface.displayMenu();
 
-        //testing if multiple filemanagers/ dealerships work with getDealership meth
-        DealershipFileManager kartManager = new DealershipFileManager("src/main/resources/VroomKartInventory.csv");
-        System.out.println(kartManager.getDealership());
 
-        //testing if adding vehicle works
+
 
 
     }
