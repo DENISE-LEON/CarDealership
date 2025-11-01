@@ -11,6 +11,7 @@ public class Dealership {
     private  String address;
     private  String phoneNum;
     private ArrayList<Vehicle> inventory;
+    private Vehicle vehicle;
 
     public String getName() {
         return name;
@@ -45,12 +46,8 @@ public class Dealership {
 
     //add and remove vehicle methods go here!!!
 
-    public void getAllVehicles(ArrayList<Vehicle> vehicles) {
-
-        //diplay using for loop
-        for(Vehicle currentVehicle: vehicles) {
-            System.out.println(currentVehicle);
-        }
+    public ArrayList<Vehicle> getAllVehicles() {
+        return this.inventory;
     }
 
     public  void addVehicle(Vehicle vehicle) {
@@ -60,21 +57,13 @@ public class Dealership {
     }
 
 
-
-    public void removeVehicle(String rVinNum, String confirmRemove) {
-        if (confirmRemove.equalsIgnoreCase("Y")) {
-            //process returns a boolean which is later used to confirm if the process was succesful
-            boolean removed = inventory.removeIf(v -> v.getVinNum().equalsIgnoreCase(rVinNum));
-
-            if (removed) {
-                System.out.println("Car has successfully been removed. Bye bye vroom vroom ");
-            } else {
-                System.out.printf("Vehicle with %s VIN number not found", rVinNum);
-            }
-        } else {
-            System.out.println("Removal cancelled");
-        }
-
+    //returns bool for comfirmation to the user
+    public boolean removeVehicle(String rVinNum) {
+        //false if input is empty
+       if (rVinNum == null || rVinNum.trim().isEmpty()) {
+           return false; }
+       //removes vehicle using collections remove ig=f method
+        return inventory.removeIf(v -> v.getVinNum().equalsIgnoreCase(rVinNum));
     }
 
 

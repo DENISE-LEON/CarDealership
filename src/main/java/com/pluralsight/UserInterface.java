@@ -9,8 +9,9 @@ import com.pluralsight.Vehicle.*;
 
 public class UserInterface {
     public static Scanner scanner = new Scanner(System.in);
-    private Dealership dealership;
     private DealershipFileManager manager;
+    private Dealership dealership = manager.getDealershipInfo();
+    private Vehicle vehicle;
 
 
 
@@ -45,16 +46,34 @@ public class UserInterface {
                 scanner.nextLine();
             }
 
-            switch (menuChoice){
-                case 1: this.displayByPriceProcess(); break;
-                case 2: this.displayByMakeModel(); break;
-                case 3: this.displayByYearProcess(); break;
-                case 4: this.displayByColorProcess(); break;
-                case 5: this.displayByMilageProcess(); break;
-                case 6: this.displayByTypeProcess(); break;
-                case 7: this.displayAllVehiclesProcess(); break;
-                case 8: this.addVehicleProcess(); break;
-                case 9: this.removeVehicleProcess(); break;
+            switch (menuChoice) {
+                case 1:
+                    this.displayByPriceProcess();
+                    break;
+                case 2:
+                    this.displayByMakeModel();
+                    break;
+                case 3:
+                    this.displayByYearProcess();
+                    break;
+                case 4:
+                    this.displayByColorProcess();
+                    break;
+                case 5:
+                    this.displayByMilageProcess();
+                    break;
+                case 6:
+                    this.displayByTypeProcess();
+                    break;
+                case 7:
+                    this.displayAllVehiclesProcess();
+                    break;
+                case 8:
+                    this.addVehicleProcess();
+                    break;
+                case 9:
+                    this.removeVehicleProcess();
+                    break;
                 case 99:
                     System.out.print("Exiting program ");
 
@@ -69,13 +88,12 @@ public class UserInterface {
                         System.out.print(".");
                         Thread.sleep(1000);
                         System.out.print(".");
-                    } catch(InterruptedException e) {
+                    } catch (InterruptedException e) {
                         System.out.println("uh oh. Error");
                     }
 
                     run = false;
             }
-
 
 
         } while (run);
@@ -94,21 +112,21 @@ public class UserInterface {
 
     }
 
-    public  void displayByColorProcess() {
+    public void displayByColorProcess() {
 
     }
 
 
-    public  void displayByMilageProcess() {
+    public void displayByMilageProcess() {
 
     }
 
-    public  void displayByTypeProcess() {
+    public void displayByTypeProcess() {
 
     }
 
-    public  void displayAllVehiclesProcess() {
-
+    public void displayAllVehiclesProcess() {
+        dealership.getAllVehicles();
     }
 
 
@@ -150,26 +168,49 @@ public class UserInterface {
         manager.vehicleRecorder(vehicle);
     }
 
-    public  void removeVehicleProcess() {
+    //returns for comfirmation to the user
+    public void removeVehicleProcess() {
         //run bool in case create loop
         boolean run = true;
-        System.out.println("Enter the VIN number of the car you'd like to remove");
-        String rVinNum = scanner.nextLine();
-        //for fancies
-        System.out.println("Are you sure you want to remove this vehicle?(Y/N)");
-        String confirmRemove = scanner.nextLine();
+        do {
+            System.out.println("Enter the VIN number of the car you'd like to remove");
+            String rVinNum = scanner.nextLine().trim();
 
-        //perhaps add loop to using run bool
-        System.out.println("Would you like to remove another vehicle?");
+            //for fancies
+            System.out.println("Are you sure you want to remove this vehicle?(Y/N)");
+            String confirmRemove = scanner.nextLine();
 
-        dealership.removeVehicle(rVinNum, confirmRemove);
+            boolean removed = dealership.removeVehicle(rVinNum);
+
+            if (confirmRemove.equalsIgnoreCase("Y")) {
+                //using a terniary instead of if
+                //since terniary's return or assign values must wrap the terniary in a sout
+                System.out.printf(removed ? "Car has been successfully removed. Bye bye vroom vroom" : "Vehicle with %s VIN number not found", rVinNum);
+
+//            if (removed) {
+//                System.out.println("Car has successfully been removed. Bye bye vroom vroom ");
+//            } else {
+//                System.out.printf("Vehicle with %s VIN number not found", rVinNum);
+//            }
+            } else {
+                System.out.println("Removal cancelled");
+
+            }
+            System.out.println("Would you like to remove another vehicle?(Y/N)");
+            String removeAnother = scanner.nextLine().trim();
+            run = removeAnother.equalsIgnoreCase("Y") ? true : false;
+        } while (run);
+
     }
 
-    private void objectInstantiator() {
-        DealershipFileManager vroomManager = new DealershipFileManager("src/main/resources/VroomInventory.csv");
-        vroomManager.getDealershipInfo();
 
-        //DealershipFileManager kartManager = new DealershipFileManager("src/main/resources/VroomKartInventory.csv");
-        //kartManager.getDealershipInfo();
+        private void objectInstantiator () {
+            DealershipFileManager vroomManager = new DealershipFileManager("src/main/resources/VroomInventory.csv");
+            vroomManager.getDealershipInfo();
+
+            //DealershipFileManager kartManager = new DealershipFileManager("src/main/resources/VroomKartInventory.csv");
+            //kartManager.getDealershipInfo();
+        }
     }
-}
+
+
